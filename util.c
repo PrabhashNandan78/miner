@@ -78,7 +78,8 @@ void applog(int prio, const char *fmt, ...)
 		gettimeofday(&tv, NULL);
 
 		pthread_mutex_lock(&time_lock);
-		tm_p = localtime(&tv.tv_sec);
+		time_t sec = tv.tv_sec;
+		tm_p = localtime(&sec);
 		memcpy(&tm, tm_p, sizeof(tm));
 		pthread_mutex_unlock(&time_lock);
 
